@@ -1,11 +1,10 @@
 import React from 'react'
 
-export const Pokemon = ({pokemon, url}) =>{
+export const Pokemon = ({pokemon}) =>{
     return(
         <>
             <h3>{pokemon.name}</h3>
-            {console.log(2222)}
-            <img src={url} className="logo"/>
+            <img src={pokemon.image}  className="logo" alt=""/>
         </>
     )
 }

@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import { Pokemon } from "./Pokemon"
+import db from '../firebase/firebaseConfig'
+import { collection, onSnapshot, doc } from "firebase/firestore"
 
 export const Pokedex = () =>{
     const [pokemones, setPokemones]=useState([])
+    const [team, setTeam]=useState([])
+    const [page, setPage]=useState(1)
 
-    const url="https://pokeapi.co/api/v2/pokemon"
+
+    const url=`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(page-1)*20}`
 
     useEffect(()=>{
         //recuperamos los datos
@@ -36,13 +41,33 @@ export const Pokedex = () =>{
             })
         })
         //esto se pone para que se deje de ejecutar cuando se mande a llamar setPokemones
-    }, [setPokemones])
-    
+    }, [setPokemones,page])
+
+    useEffect(()=>{
+        const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
+            if(snapshot.exists()){
+                const data=snapshot.data()
+
+                Object.keys(data).map(d=>{
+                    console.log(data[d])
+                })
+
+            }
+        })
+    },[setTeam])
+
     return(
         <div>
             {pokemones.map((pokemon)=>{
                 return <Pokemon key={pokemon.id} pokemon={pokemon}/>
             })}
+
+            <div>
+                {
+                    page!=1 && <button onClick={()=>setPage(page-1)}>Anterior</button>
+                }
+                <button onClick={()=>setPage(page+1)}>Siguiente</button>
+            </div>
         </div>
     )
 }

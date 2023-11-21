@@ -2,7 +2,9 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import { Pokemon } from "./Pokemon"
 import db from '../firebase/firebaseConfig'
-import { collection, onSnapshot, doc } from "firebase/firestore"
+import { onSnapshot, doc  } from "firebase/firestore"
+import { getDatabase, ref, set } from "firebase/database";
+
 
 export const Pokedex = () =>{
     const [pokemones, setPokemones]=useState([])
@@ -47,27 +49,52 @@ export const Pokedex = () =>{
         const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
             if(snapshot.exists()){
                 const data=snapshot.data()
-
                 Object.keys(data).map(d=>{
                     console.log(data[d])
                 })
-
             }
         })
     },[setTeam])
 
+    useEffect(()=>{
+        const db = getDatabase();
+        set(ref(db, '/team/principal'), {
+        username: "a"
+        });
+    })
+    
     return(
         <div>
-            {pokemones.map((pokemon)=>{
-                return <Pokemon key={pokemon.id} pokemon={pokemon}/>
+            {
+            pokemones.map((pokemon)=>{
+               return(
+                [<Pokemon key={pokemon.id} pokemon={pokemon}/>,<br></br>,
+                <button key={pokemon.name}  onClick={()=>{if(team.length<3 && !team.includes(pokemon)){ setTeam(a=>[...a,pokemon])}}}>Seleccionar</button>]
+               )               
+
             })}
 
-            <div>
+            <div style={{paddingTop:40}}>
                 {
                     page!=1 && <button onClick={()=>setPage(page-1)}>Anterior</button>
                 }
                 <button onClick={()=>setPage(page+1)}>Siguiente</button>
-            </div>
+            </div>   
+
+            <div style={{paddingTop: 40}}> 
+
+                {
+                    team.map((a)=>{
+                        return (
+                        [
+                        <Pokemon pokemon={a}/>,
+                        <button onClick={()=>{setTeam(prev => prev.filter(team => team !== a ))}}>Eliminar</button>
+
+                        ]) 
+                    })
+                  
+                } 
+            </div> 
         </div>
     )
 }

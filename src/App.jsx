@@ -6,15 +6,15 @@ import { Pokedex } from './components/Pokedex'
 function App() {
   return (
     <>
-      <div>
+      {/* <div>
         <a href="https://pokeapi.co/" target="_blank">
           <img src={pikachu} className="logo" alt="Vite logo" />
         </a>
-      </div>
-      <h1>Pokedex</h1>
+      </div> */}
+      {/* <h1>Pokedex</h1>
       <div className="card">
         <Pokedex/>
-      </div>
+      </div> */}
     </>
   )
 }

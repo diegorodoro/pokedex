@@ -64,37 +64,40 @@ export const Pokedex = () =>{
     })
     
     return(
-        <div>
-            {
-            pokemones.map((pokemon)=>{
-               return(
-                [<Pokemon key={pokemon.id} pokemon={pokemon}/>,<br></br>,
-                <button key={pokemon.name}  onClick={()=>{if(team.length<3 && !team.includes(pokemon)){ setTeam(a=>[...a,pokemon])}}}>Seleccionar</button>]
-               )               
+        <p>a</p>
 
-            })}
 
-            <div style={{paddingTop:40}}>
-                {
-                    page!=1 && <button onClick={()=>setPage(page-1)}>Anterior</button>
-                }
-                <button onClick={()=>setPage(page+1)}>Siguiente</button>
-            </div>   
 
-            <div style={{paddingTop: 40}}> 
+        // <div>
+        //     {
+        //     pokemones.map((pokemon)=>{
+        //        return(
+        //         [<Pokemon key={pokemon.id} pokemon={pokemon}/>,<br></br>,
+        //         <button key={pokemon.name}  onClick={()=>{if(team.length<6 && !team.includes(pokemon)){ setTeam(a=>[...a,pokemon])}}}>Seleccionar</button>]
+        //        )               
 
-                {
-                    team.map((a)=>{
-                        return (
-                        [
-                        <Pokemon pokemon={a}/>,
-                        <button onClick={()=>{setTeam(prev => prev.filter(team => team !== a ))}}>Eliminar</button>
+        //     })}
 
-                        ]) 
-                    })
+        //     <div style={{paddingTop:40}}>
+        //         {
+        //             page!=1 && <button onClick={()=>setPage(page-1)}>Anterior</button>
+        //         }
+        //         <button onClick={()=>setPage(page+1)}>Siguiente</button>
+        //     </div>   
+
+        //     <div style={{paddingTop: 40}}> 
+
+        //         {
+        //             team.map((a)=>{
+        //                 return (
+        //                 [
+        //                 <Pokemon pokemon={a}/>,
+        //                 <button onClick={()=>{setTeam(prev => prev.filter(team => team !== a ))}}>Eliminar</button>
+        //                 ]) 
+        //             })
                   
-                } 
-            </div> 
-        </div>
+        //         } 
+        //     </div> 
+        // </div>
     )
 }

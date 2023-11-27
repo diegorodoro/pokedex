@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import pikachu from './assets/pikachu.png'
+import pokedex from './assets/pokedex.png'
 import './App.css'
 import { Pokedex } from './components/Pokedex'
 
 function App() {
   return (
     <>
-      {/* <div>
+      <div>
         <a href="https://pokeapi.co/" target="_blank">
-          <img src={pikachu} className="logo" alt="Vite logo" />
+          <img src={pokedex} className="logo" alt="Vite logo" />
         </a>
-      </div> */}
-      {/* <h1>Pokedex</h1>
-      <div className="card">
+      </div>
+      <div>
         <Pokedex/>
-      </div> */}
+      </div>
     </>
   )
 }

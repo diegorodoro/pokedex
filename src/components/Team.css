@@ -1,0 +1,25 @@
+
+.team img {
+    width:20px;
+} 
+.team img:hover{
+    filter: brightness(0) invert(1);
+}
+.team div:hover{
+    background-color: red;
+    border-radius: 0.1em;
+}
+.team div{
+    width:20px;
+    display: grid;
+    align-items: center; 
+}
+.team h3{
+    display: grid;
+    align-items: center; 
+    font-size: 19px;
+
+}
+.team-pokemon{
+    width: 100px;
+}

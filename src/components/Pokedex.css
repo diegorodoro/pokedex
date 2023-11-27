@@ -1,0 +1,50 @@
+.selected {
+    background-color: rgb(202, 166, 146);
+    padding: 2em;
+    border-radius: 1em;
+    border:1px solid black;
+}
+.choosed{
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+.pokemon {
+    padding: 1em;  
+    border-radius: 1em;
+    border-color: black;
+    border: 1ch;
+}
+.pokemon img{
+    align-self: center;
+    width: 200px;
+}
+.pokemon > h1{
+    width: 10;
+}
+.pokemon:hover{
+    background-color:gray;
+}
+
+.pokemon:hover h3{
+  
+        color: aliceblue;
+    
+}
+.pokemon:active{
+    background-color:rgb(61, 61, 61);
+}
+
+.Alert{
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 2;
+}
+
+.equipo{
+    width: 100%;
+    z-index: 1;
+}
+

@@ -56,6 +56,7 @@ export const Pokedex = () =>{
         //esto se pone para que se deje de ejecutar cuando se mande a llamar setPokemones
     }, [setPokemones,page])
 
+    //Se recupera informacion de firebase
     useEffect(()=>{
         const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
             if(snapshot.exists()){
@@ -68,6 +69,7 @@ export const Pokedex = () =>{
     },[setTeam])
 
     function add_team(pokemon){
+        // aqui se guarda equipo
         if(team.length<6 && !team.includes(pokemon)){ 
             setTeam(a=>[...a,pokemon])
         }
@@ -83,6 +85,7 @@ export const Pokedex = () =>{
         }
     }
     const borrar=(pokemon)=>{
+        // aqui se borra equipo
         setTeam(prev => prev.filter(team => team !== pokemon ))
     }
     return(
@@ -119,6 +122,7 @@ export const Pokedex = () =>{
                         </Row>
                         <Row md={5} >
                         {
+                        //aqui se mapea equipo seleccionado
                         team.map((pokemon)=>{
                             return(
                                 <Col md={2} className="selected">
@@ -136,6 +140,7 @@ export const Pokedex = () =>{
             <div style={{position:"relative"}}>
                 <Container >
                     <Row md={5}>
+                    {/* aqui se mapea todos los pokemones */}
                     {pokemones.map((pokemon)=>{
                         return(
                             <Col md={2} className="pokemon" onClick={()=>add_team(pokemon)}>

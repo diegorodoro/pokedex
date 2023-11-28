@@ -1,20 +1,20 @@
 import { useState } from 'react'
-import pikachu from './assets/pikachu.png'
 import pokedex from './assets/pokedex.png'
 import './App.css'
 import { Pokedex } from './components/Pokedex'
+import {Nav_bar} from './components/Nav_bar'
 
 function App() {
+  const[page,setPage]=useState(1);
   return (
     <>
       <div>
-        <a href="https://pokeapi.co/" target="_blank">
-          <img src={pokedex} className="logo" alt="Vite logo" />
-        </a>
+        <Nav_bar page={setPage}/>
       </div>
-      <div>
-        <Pokedex/>
-      </div>
+      {
+        page===1&&<Pokedex/>
+
+      }
     </>
   )
 }

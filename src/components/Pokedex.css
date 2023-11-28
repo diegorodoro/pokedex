@@ -1,38 +1,15 @@
-.selected {
-    background-color: rgb(202, 166, 146);
-    padding: 2em;
-    border-radius: 1em;
-    border:1px solid black;
-}
 .choosed{
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 }
-.pokemon {
-    padding: 1em;  
-    border-radius: 1em;
-    border-color: black;
-    border: 1ch;
-}
-.pokemon img{
-    align-self: center;
-    width: 200px;
-}
-.pokemon > h1{
-    width: 10;
-}
-.pokemon:hover{
-    background-color:gray;
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 9px;
+    grid-row-gap: 14px;
 }
 
-.pokemon:hover h3{
-  
-        color: aliceblue;
-    
-}
-.pokemon:active{
-    background-color:rgb(61, 61, 61);
-}
 
 .Alert{
     left: 50%;
@@ -43,8 +20,24 @@
     z-index: 2;
 }
 
-.equipo{
-    width: 100%;
-    z-index: 1;
+.team-grid{
+    
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 20px;
+      
+}
+.botones{
+    display: flex;
+    column-gap: 30px;
+    justify-content: center;
+}
+.botones button{
+    height: 50px;
+    width: 120px;
+    font-size: 20px;
 }
 

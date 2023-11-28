@@ -1,25 +1,40 @@
+.team {
+    box-sizing: border-box;
+    width: 190px;
+    height: 254px;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  .team:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+  }
+  
+  .team:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
 
-.team img {
-    width:20px;
-} 
-.team img:hover{
-    filter: brightness(0) invert(1);
-}
-.team div:hover{
-    background-color: red;
-    border-radius: 0.1em;
-}
-.team div{
-    width:20px;
+  .grid{
     display: grid;
-    align-items: center; 
-}
-.team h3{
-    display: grid;
-    align-items: center; 
-    font-size: 19px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 0.5fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+  .equis{
+    width: 20px;
+  }
 
-}
-.team-pokemon{
-    width: 100px;
-}

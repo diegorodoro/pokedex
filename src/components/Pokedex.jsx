@@ -4,15 +4,10 @@ import { Pokemon } from "./Pokemon"
 import db from '../firebase/firebaseConfig'
 import { onSnapshot, doc  } from "firebase/firestore"
 import { getDatabase, ref, set } from "firebase/database";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import {Team} from './Team';
 import './Pokedex.css'
 import Alert from 'react-bootstrap/Alert';
-
- 
 
 export const Pokedex = () =>{
     const [pokemones, setPokemones]=useState([])
@@ -46,7 +41,9 @@ export const Pokedex = () =>{
                         //guardamos en pokemon, como si fuera diccionario
                         ...pokemon,
                         image: pokemon.sprites.front_default,
-                        sprites: pokemon.sprites
+                        sprites: pokemon.sprites,
+                        abilities: pokemon.abilities,
+                        height:pokemon.height
                     }
                 })
                 //llamamos el setPokemones con el useState
@@ -80,7 +77,6 @@ export const Pokedex = () =>{
             setDanger(true)
             if(team.includes(pokemon)){
                 setWarning(true)
-
             }
         }
     }
@@ -113,61 +109,43 @@ export const Pokedex = () =>{
             </ div>
 
             {/*se imprime equipo */}
-            <div className="equipo">
+            <div className="team-grid">
                 {    
                     team.length>0 && 
-                    <Container>
-                        <Row>
-                            <h1>Equipo seleccionado</h1>
-                        </Row>
-                        <Row md={5} >
-                        {
-                        //aqui se mapea equipo seleccionado
                         team.map((pokemon)=>{
-                            return(
-                                <Col md={2} className="selected">
-                                    {<Team team={pokemon} borrar={borrar}/>}
-                                </Col>
-                                )
-                            })
-                        }
-                        </Row>
-                    </Container>
+                         return(
+                             <Team team={pokemon} borrar={borrar}/>
+                         )
+                        })
                 }
             </div>
 
             {/*lista de los pokemones */}
-            <div style={{position:"relative"}}>
-                <Container >
-                    <Row md={5}>
-                    {/* aqui se mapea todos los pokemones */}
-                    {pokemones.map((pokemon)=>{
-                        return(
-                            <Col md={2} className="pokemon" onClick={()=>add_team(pokemon)}>
-                                {
-                                    <div>
-                                        <div className={team.includes(pokemon)?"choosed":""}>
-                                            <Pokemon key={pokemon.id} pokemon={pokemon} />
-                                        </div>
-                                    </div>
-                                }
-                            </Col>)
-                            
-                    })}
-                    </Row>
-                </Container>
+            <div className="pokemon-grid">
+                {/* aqui se mapea todos los pokemones */}
+                {pokemones.map((pokemon)=>{
+                    return(    
+                        <div >
+                            <Pokemon key={pokemon.id} pokemon={pokemon} add={()=>add_team(pokemon)}
+                            black_white={team.includes(pokemon)?true:false}
+                             />
+                        </div>
+                    )
+                })}
             </ div>
 
             {/*botones paginas */}
-            <div style={{padding:40}}>
-                    {
-                     page!=1 ? 
-                     <Button type="submit" onClick={()=>setPage(page-1)}>Anterior</Button>
-                     :
-                     <Button variant="secondary" type="submit" disabled>Anterior</Button>
-                 }
-                 <Button type="submit" onClick={()=>setPage(page+1)}>Siguiente</Button>
-             </div>  
+            <div style={{padding:"40px"}}>
+                <div className="botones">
+                        {
+                         page!=1 ? 
+                            <Button type="submit" onClick={()=>setPage(page-1)}>Anterior</Button>
+                         :
+                            <Button variant="secondary" type="submit" disabled>Anterior</Button>
+                        }
+                        <Button type="submit" onClick={()=>setPage(page+1)}>Siguiente</Button>
+                 </div>  
+            </ div>
 
         </div>
     )

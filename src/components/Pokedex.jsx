@@ -37,11 +37,14 @@ export const Pokedex = ({selected,setSelected}) =>{
                     //retornamos los pokemones con la funcion de "...", similar a append en python
                     return {
                         //guardamos en pokemon, como si fuera diccionario
-                        ...pokemon,
+                        name:pokemon.name,
+                        id:pokemon.id,
                         image: pokemon.sprites.front_default,
-                        sprites: pokemon.sprites,
                         abilities: pokemon.abilities,
-                        height:pokemon.height
+                        height:pokemon.height,
+                        types:pokemon.types,
+                        weight:pokemon.weight
+                        
                     }
                 })
                 //llamamos el setPokemones con el useState
@@ -76,9 +79,7 @@ export const Pokedex = ({selected,setSelected}) =>{
             console.log(a.name)
         })
         console.log("-----------")
-
         
-
     })
 
     function add_team(pokemon){
@@ -130,6 +131,16 @@ export const Pokedex = ({selected,setSelected}) =>{
                 }
             </ div>
 
+            {team.length==0?
+                <div style={{color:"black", textAlign:"center", paddingTop:"150px",paddingBottom:"10px"}}>
+                    <h1>Haga click en la tarjeta para seleccionar a un pokemon</h1>
+                </div>
+                :
+                <div style={{color:"black", textAlign:"center", paddingTop:"150px",paddingBottom:"10px"}}>
+                    <h1>Equipo seleccionado</h1>
+                </div>
+            }
+
             {/*se imprime equipo */}
             <div className="team-grid">
                 {    
@@ -147,7 +158,7 @@ export const Pokedex = ({selected,setSelected}) =>{
                 {/* aqui se mapea todos los pokemones */}
                 {pokemones.map((pokemon)=>{
                     return(    
-                        <div >
+                        <div>
                             {team.find((a)=>a.name==pokemon.name)
                             ?
                             <div onClick={()=>add_team(pokemon)}>

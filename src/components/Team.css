@@ -29,9 +29,9 @@
   .grid{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 0.5fr);
+    grid-template-rows: repeat(3, 0fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 10px;
   }
   .equis{
     width: 28px;
@@ -46,7 +46,10 @@
   }
   div.equis:hover{
     background-color: red;  
-}
+  }
+  .team .icon img{
+    width:140px ;
+  }
  
   
 

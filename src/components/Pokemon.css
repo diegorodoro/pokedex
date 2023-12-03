@@ -22,12 +22,15 @@
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
 }
 
+.pokemon .front-content h3{
+  color: #606060;
+  text-align: center;
+}
 
 .pokemon .front-content img{
   align-self: center;
   width: 200px;
 }
-
 
 .pokemon .front-content p {
   font-size: 32px;
@@ -37,7 +40,8 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-align: center;
 }
 
 .pokemon .content {
@@ -62,7 +66,7 @@
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
  .content img{
-  width:90px;
+  display: block;
 }
 
 .pokemon .content .heading {
@@ -93,5 +97,11 @@
 .pokemon .choosed{
   -webkit-filter: grayscale(100%); 
     filter: grayscale(100%);
+}
+ .pokemon:active .content{
+  -webkit-filter: grayscale(100%); 
+  filter: grayscale(100%);
+    transition: all 0s cubic-bezier(0.23, 1, 0.320, 1);
+
 }
 

@@ -9,11 +9,13 @@
     grid-column-gap: 35px;
     grid-row-gap: 35px;
     width: 50px;
-    padding-left: 100px;
+    padding-left: 50px;
 }
 
 
 .Alert{
+
+    padding-top: 250px;
     left: 50%;
     transform: translate(-50%, 0);
     position: fixed;
@@ -29,12 +31,10 @@
     grid-template-rows: 1fr;
     grid-column-gap: 30px;
     grid-row-gap: 0px;
-    padding-left: 160px;
+    padding-left: 90px;
     padding-bottom: 40px;
-    padding-top: 30px;
-
+    padding-top: 20px;
     width: 60px;
-      
 }
 .botones{
     display: flex;

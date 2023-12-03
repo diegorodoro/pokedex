@@ -6,16 +6,16 @@ import {Selection} from './components/Selection'
 
 function App() {
   const[page,setPage]=useState(1);
-  const[selected,setSelected]=useState([]);
+  const[team,setTeam]=useState([]);
 
 
   const pagination =(page)=>{
     switch (page) {
       case 1:
-        return(<Pokedex key={"pokedex"} selected={selected} setSelected={setSelected}/>)
+        return(<Pokedex key={"pokedex"} selected={team} setSelected={setTeam}/>)
       
       case 2:
-        return(<Selection key={"selection"} team={selected}/>)
+        return(<Selection key={"selection"} team={team} setTeam={setTeam} setPage={setPage}/>)
       
       default:
           

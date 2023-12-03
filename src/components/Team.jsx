@@ -13,7 +13,7 @@ export const Team = ({team, borrar}) =>{
                 <div>
                     <h3 >{team.name}</h3>
                 </div>
-                <div>
+                <div className='icon'>
                     <img  src={team.image} /> 
                 </div>
             </div>

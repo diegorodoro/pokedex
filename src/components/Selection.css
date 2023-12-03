@@ -1,6 +1,6 @@
-  :root{
-    position: relative;
-    width: 100%;
+  .back{
+    display: flex;
+    justify-content: center;
     --color: rgba(114, 114, 114, 0.3);
     background-color: #191a1a;
     background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
@@ -8,11 +8,17 @@
     background-size: 55px 55px;
   }
   .alert-pad{
-    position: absolute;
-    padding-top: 250px;
-    padding-left: 350px;
+    padding-top: 200px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 500px;
+
   }
   .alert-design{
+    position: relative;
+    width: 600px;
+    height: 400px;
     background-color: #f37070;
     border-radius: 5px;
     padding: 40px;
@@ -59,19 +65,14 @@
     box-shadow: none;
     transform: scale(0.98);
   }
-
   .aa{
-    padding-top: 130px;
-    padding-bottom: 40px;
-    padding-left: 300px;
+    padding-top: 100px;
+  }
+  .b{
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 6fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 30px;  
-	  position: absolute;
-	  top: 0;
-	  left: 0;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    justify-content: center;
   }
   .aa h1{
     text-align: center;
@@ -117,7 +118,6 @@
 
   .selection-icon{
     display: grid;
-    align-items: center;
     justify-content: center;
   }
 
@@ -144,7 +144,7 @@
     padding-left: 60px;
   }
   .delete button {
-    width: 150px;
+    width: 160px;
     height: 50px;
     cursor: pointer;
     display: flex;

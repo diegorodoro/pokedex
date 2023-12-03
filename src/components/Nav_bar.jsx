@@ -1,6 +1,7 @@
 import React from 'react'
 import './Nav_bar.css'
 import pokedex from '../assets/pokedex.png'
+import go from '../assets/pokego.png'
 
 export const Nav_bar = ({page}) =>{
     return(
@@ -12,7 +13,7 @@ export const Nav_bar = ({page}) =>{
         <span></span>
 
         <a href="#" className="menu-logo">
-            <img src={pokedex} />
+            <img src={go} />
         </a>
 
         <div className="menu">

@@ -11,7 +11,7 @@ body {
     margin-bottom: 0px;
     background: #232323;
     color: #cdcdcd;
-    padding: 20px;
+    padding: 10px;
     z-index: 1;
     -webkit-user-select: none;
     user-select: none;
@@ -24,7 +24,7 @@ body {
   }
   
   .menu-logo img {
-    max-height: 40px;
+    max-height: 100px;
     max-width: 100px;
     flex-shrink: 0;
   }
@@ -33,6 +33,7 @@ body {
     text-decoration: none;
     color: #232323;
     transition: color 0.3s ease;
+    
   }
   
   .menu-container li:hover {

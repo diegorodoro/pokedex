@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import { Pokemon } from "./Pokemon"
-import config from '../firebase/firebaseConfig'
 import { collection, onSnapshot, doc, setDoc } from "firebase/firestore"
 import { getDatabase, ref, set } from "firebase/database";
 import Button from 'react-bootstrap/Button';
@@ -67,20 +66,20 @@ export const Pokedex = ({selected,setSelected}) =>{
 //         })
 //     },[setTeam])
 
-    useEffect(()=>{
-        team.map((a)=>{
-            setDoc(doc(config, "pokemones", a.name), {
-                name:a.name,
-                sprite:a.image
+    // useEffect(()=>{
+    //     team.map((a)=>{
+    //         setDoc(doc(config, "pokemones", a.name), {
+    //             name:a.name,
+    //             sprite:a.image
 
-            })
-        })
-        team.map((a)=>{
-            console.log(a.name)
-        })
-        console.log("-----------")
+    //         })
+    //     })
+    //     team.map((a)=>{
+    //         console.log(a.name)
+    //     })
+    //     console.log("-----------")
         
-    })
+    // })
 
     function add_team(pokemon){
         // aqui se guarda equipo
@@ -108,7 +107,7 @@ export const Pokedex = ({selected,setSelected}) =>{
     
     
     return(
-        <div>
+        <div style={{backgroundColor:"white"}}>
             {/*alertas en caso de evento */}
             <div className="Alert">
                 {
@@ -182,11 +181,11 @@ export const Pokedex = ({selected,setSelected}) =>{
                 <div className="botones">
                         {
                          page!=1 ? 
-                            <Button type="submit" onClick={()=>setPage(page-1)}>Anterior</Button>
+                            <button id="active" onClick={()=>setPage(page-1)}>Anterior</button>
                          :
-                            <Button variant="secondary" type="submit" disabled>Anterior</Button>
+                            <button id="inactive" >Anterior</button>
                         }
-                        <Button type="submit" onClick={()=>setPage(page+1)}>Siguiente</Button>
+                        <button id="active" onClick={()=>setPage(page+1)}>Siguiente</button>
                  </div>  
             </ div>
 

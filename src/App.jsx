@@ -1,20 +1,37 @@
 import { useState } from 'react'
-import pokedex from './assets/pokedex.png'
 import './App.css'
-import { Pokedex } from './components/Pokedex'
 import {Nav_bar} from './components/Nav_bar'
+import { Pokedex } from './components/Pokedex'
+import {Selection} from './components/Selection'
 
 function App() {
   const[page,setPage]=useState(1);
+  const[selected,setSelected]=useState([]);
+
+
+  const pagination =(page)=>{
+    switch (page) {
+      case 1:
+        return(<Pokedex key={"pokedex"} selected={selected} setSelected={setSelected}/>)
+      
+      case 2:
+        return(<Selection key={"selection"} team={selected}/>)
+      
+      default:
+          
+      break;
+     }
+  }
+
   return (
     <>
       <div>
-        <Nav_bar page={setPage}/>
+        <Nav_bar key={0} page={setPage}/>
       </div>
-      {
-        page===1&&<Pokedex/>
-
-      }
+      <div>
+        {pagination(page)}      
+      </div>
+      
     </>
   )
 }

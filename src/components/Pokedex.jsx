@@ -1,22 +1,20 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import { Pokemon } from "./Pokemon"
-import db from '../firebase/firebaseConfig'
-import { onSnapshot, doc  } from "firebase/firestore"
+import config from '../firebase/firebaseConfig'
+import { collection, onSnapshot, doc, setDoc } from "firebase/firestore"
 import { getDatabase, ref, set } from "firebase/database";
 import Button from 'react-bootstrap/Button';
 import {Team} from './Team';
 import './Pokedex.css'
 import Alert from 'react-bootstrap/Alert';
 
-export const Pokedex = () =>{
+export const Pokedex = ({selected,setSelected}) =>{
     const [pokemones, setPokemones]=useState([])
-    const [team, setTeam]=useState([])
+    const [team, setTeam]=useState(selected)
     const [page, setPage]=useState(1)
     const [warning, setWarning] = useState(false);
     const [danger, setDanger] = useState(false);
-
-
 
     const url=`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(page-1)*20}`
 
@@ -53,37 +51,61 @@ export const Pokedex = () =>{
         //esto se pone para que se deje de ejecutar cuando se mande a llamar setPokemones
     }, [setPokemones,page])
 
+
     //Se recupera informacion de firebase
+//     useEffect(()=>{
+//         const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
+//             if(snapshot.exists()){
+//                 const data=snapshot.data()
+//                 Object.keys(data).map(d=>{
+//                     console.log(data[d])
+//                 })
+//             }
+//         })
+//     },[setTeam])
+
     useEffect(()=>{
-        const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
-            if(snapshot.exists()){
-                const data=snapshot.data()
-                Object.keys(data).map(d=>{
-                    console.log(data[d])
-                })
-            }
+        team.map((a)=>{
+            setDoc(doc(config, "pokemones", a.name), {
+                name:a.name,
+                sprite:a.image
+
+            })
         })
-    },[setTeam])
+        team.map((a)=>{
+            console.log(a.name)
+        })
+        console.log("-----------")
+
+        
+
+    })
 
     function add_team(pokemon){
         // aqui se guarda equipo
-        if(team.length<6 && !team.includes(pokemon)){ 
+        if(team.length<6 && !team.find((a)=>a.name==pokemon.name)){ 
             setTeam(a=>[...a,pokemon])
         }
-        else if(team.length<6 && team.includes(pokemon)){ 
+        if(team.length<6 && team.find((a)=>a.name==pokemon.name)){ 
             setWarning(true)
         }
         else if(team.length===6 ){
             setDanger(true)
-            if(team.includes(pokemon)){
+            if(team.find((a)=>a.name==pokemon.name)){
                 setWarning(true)
             }
         }
     }
-    const borrar=(pokemon)=>{
+    function borrar(pokemon){
         // aqui se borra equipo
-        setTeam(prev => prev.filter(team => team !== pokemon ))
+        setTeam(prev => prev.filter(team => team !== pokemon ))        
     }
+    
+    useEffect(()=>{
+        setSelected(team)
+    },[team])
+    
+    
     return(
         <div>
             {/*alertas en caso de evento */}
@@ -102,7 +124,7 @@ export const Pokedex = () =>{
                         <Alert variant="danger" onClose={() => setDanger(false)} dismissible>
                             <Alert.Heading>Limite de pokemones excedido</Alert.Heading>
                             <p>
-                                El limite de pokemones es de 6
+                                El limite de pokemones es de 6.
                             </p>
                         </Alert> 
                 }
@@ -114,7 +136,7 @@ export const Pokedex = () =>{
                     team.length>0 && 
                         team.map((pokemon)=>{
                          return(
-                             <Team team={pokemon} borrar={borrar}/>
+                             <Team team={pokemon} borrar={()=>borrar(pokemon)}/>
                          )
                         })
                 }
@@ -126,9 +148,19 @@ export const Pokedex = () =>{
                 {pokemones.map((pokemon)=>{
                     return(    
                         <div >
-                            <Pokemon key={pokemon.id} pokemon={pokemon} add={()=>add_team(pokemon)}
-                            black_white={team.includes(pokemon)?true:false}
-                             />
+                            {team.find((a)=>a.name==pokemon.name)
+                            ?
+                            <div onClick={()=>add_team(pokemon)}>
+                                <Pokemon key={pokemon.id} pokemon={pokemon}
+                                black_white={"choosed"}/>
+                            </div>
+                            :
+                            <div onClick={()=>add_team(pokemon)}>
+                                <Pokemon key={pokemon.id} pokemon={pokemon}
+                                black_white={""}/>
+                            </div>
+                            }                            
+                            
                         </div>
                     )
                 })}

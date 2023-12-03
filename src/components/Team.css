@@ -13,7 +13,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    user-select: none;
     font-weight: bolder;
     color: black;
   }
@@ -35,6 +34,19 @@
     grid-row-gap: 0px;
   }
   .equis{
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+  }
+  .equis img{
     width: 20px;
   }
+  .equis img:hover{
+    filter: brightness(0) invert(1);
+  }
+  div.equis:hover{
+    background-color: red;  
+}
+ 
+  
 

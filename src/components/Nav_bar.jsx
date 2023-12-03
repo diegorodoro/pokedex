@@ -1,34 +1,45 @@
+import React from 'react'
 import './Nav_bar.css'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import pokedex from '../assets/pokedex.png'
-
 
 export const Nav_bar = ({page}) =>{
     return(
         <>
-        <Navbar expand="lg" className="bg-body-tertiary">
-            <Container>
-                <Navbar.Brand href="#home">
-                    <img
-                    src={pokedex}
-                    width="100"
-                    height="40"
-                    className="d-inline-block align-top"
-                    alt="React Bootstrap logo"
-                    />
-                </Navbar.Brand>
+       <nav className="menu-container">
+        <input type="checkbox" aria-label="Toggle menu" />
+        <span></span>
+        <span></span>
+        <span></span>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link onClick={()=>page(1)}>Home</Nav.Link>
-                        <Nav.Link onClick={()=>page(0)}>Link</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <a href="#" className="menu-logo">
+            <img src={pokedex} />
+        </a>
+
+        <div className="menu">
+            <ul>
+            <li onClick={()=>page(1)}>
+                Home
+            </li>
+            <li onClick={()=>page(2)}>
+                Team
+            </li>
+           
+            </ul>
+
+            <ul>
+            <li>
+                <a href="#signup">
+                Sign-up
+                </a>
+            </li>
+            <li>
+                <a href="#login">
+                Login
+                </a>
+            </li>
+            </ul>
+        </div>
+        </nav>
         </>
     )
 }     

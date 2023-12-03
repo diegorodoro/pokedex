@@ -1,20 +1,20 @@
 import React from 'react'
 import './Pokemon.css'
 
-export const Pokemon = ({pokemon,black_white, add}) =>{
+export const Pokemon = ({pokemon,black_white}) =>{
     return(
-        <div className="pokemon-container" onClick={add}>
+        <div className="pokemon-container">
             <div className="pokemon">
                 <div className="front-content">
                     <h3>#{pokemon.id}</h3>
-                    <p className={black_white===true ? "choosed":""}>{pokemon.name}</p>
-                    <img className={black_white===true ? "choosed":""}src={pokemon.image} alt=""/>
+                    <p className={black_white}>{pokemon.name}</p>
+                    <img className={black_white}src={pokemon.image} alt=""/>
                 </div>
 
                 <div className="content">
                     <div className='conteiner-grid'>
                         <p className="heading">{pokemon.name}</p>
-                        <img className={black_white===true ? "choosed":""}src={pokemon.image} alt=""/>
+                        <img className={black_white}src={pokemon.image} alt=""/>
                     </ div>
 
                     <div className='conteiner-grid'>
@@ -34,7 +34,7 @@ export const Pokemon = ({pokemon,black_white, add}) =>{
                        <div>
                          {
                              pokemon.abilities.map((a)=>{
-                                 return(<p>{a.ability.name}</p>)
+                                 return(<p id={a.ability.name}>{a.ability.name}</p>)
                              })
                          }
                        </div>

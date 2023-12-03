@@ -7,14 +7,14 @@ export const Team = ({team, borrar}) =>{
         
         <div className="team">
             <div className='grid'>
-                <div>
-                    <img className="equis" src={equis} alt=""/> 
+                <div className="equis">
+                    <img src={equis} onClick={borrar}/> 
                 </div>
                 <div>
                     <h3 >{team.name}</h3>
                 </div>
                 <div>
-                    <img className="team-pokemon" src={team.image} alt=""/> 
+                    <img  src={team.image} /> 
                 </div>
             </div>
             

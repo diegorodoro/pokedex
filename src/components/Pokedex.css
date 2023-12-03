@@ -6,8 +6,10 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    grid-column-gap: 9px;
-    grid-row-gap: 14px;
+    grid-column-gap: 35px;
+    grid-row-gap: 35px;
+    width: 50px;
+    padding-left: 100px;
 }
 
 
@@ -25,9 +27,13 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
-    grid-column-gap: 0px;
+    grid-column-gap: 30px;
     grid-row-gap: 0px;
-    padding: 20px;
+    padding-left: 160px;
+    padding-bottom: 40px;
+    padding-top: 30px;
+
+    width: 60px;
       
 }
 .botones{

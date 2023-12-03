@@ -26,13 +26,13 @@ function App() {
 
   return (
     <>
-      {/* <Authe/> */}
-      <div>
+      <Authe/>
+      {/* <div>
         <Nav_bar key={0} page={setPage}/>
       </div>
       <div>
         {pagination(page)}      
-      </div>
+      </div> */}
     </>
   )
 }

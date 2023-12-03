@@ -1,4 +1,4 @@
-:root {
+body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to right, #9EDBD4, #5A98D6);
     background-image: url('../assets/wallpaper.jpg');
@@ -13,11 +13,8 @@
 
 }
 .c{
-    position: relative;
     padding-top: 250px;
-    justify-self: center;
-    padding-left: 720px;
-    width: 1200px;
+    text-align: center;
     padding-bottom: 500px;
 }
 .container {

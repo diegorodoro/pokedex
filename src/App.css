@@ -1,5 +1,136 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #9EDBD4, #5A98D6);
+  background-image: url('./assets/wallpaper.jpg');
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.logo-container{
+  text-align: center;
+  position: absolute;
+  display: block;
+  background-color: transparent;
+
+}
+.cont-gen{
+  margin: auto;
+  text-align: center;
+  width: 32%;
+  padding-top: 10%;
+  
+}
+.cont-login {
+  padding: 10px;
+  text-align: center;    
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 450px;
+}
+
 .logo {
-  height: 10em;
-  padding: 1.5em;
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  color: #4CAF50; /* Verde */
+  margin-bottom: 10px;
+}
+
+.underline {
+  width: 100%;
+  height: 2px;
+  background: #4CAF50; /* Verde */
+  margin-bottom: 20px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.input img {
+  margin: 10px;
+}
+
+.input input {
+  flex: 1;
+  height: 30px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.submit {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background: none;
+  color: #666;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.submit:hover {
+  color: #4CAF50; /* Verde */
+}
+
+.cont-login button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background: linear-gradient(to right, #4CAF50, #2196F3); /* Degradado azul */
+  border: none;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cont-login button:hover {
+  background: #1565C0; /* Azul más oscuro en el hover */
+}
+
+.google-button {
+  width: 100%;
+  max-width: 300px;
+}
+
+.google-container {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  max-width: 300px;
 }
 

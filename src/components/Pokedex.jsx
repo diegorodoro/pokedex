@@ -1,21 +1,34 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import { Pokemon } from "./Pokemon"
-import { collection, onSnapshot, doc, setDoc } from "firebase/firestore"
-import { getDatabase, ref, set } from "firebase/database";
-import Button from 'react-bootstrap/Button';
+import { onSnapshot, doc, setDoc } from "firebase/firestore"
+import {db,auth} from "../firebase/firebaseConfig";
 import {Team} from './Team';
 import './Pokedex.css'
 import Alert from 'react-bootstrap/Alert';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-export const Pokedex = ({selected,setSelected}) =>{
+//import App, { userId } from '../App';
+
+export const Pokedex = () =>{
     const [pokemones, setPokemones]=useState([])
-    const [team, setTeam]=useState(selected)
+    const [team, setTeam]=useState([])
     const [page, setPage]=useState(1)
     const [warning, setWarning] = useState(false);
     const [danger, setDanger] = useState(false);
+    const [currentUserId, setCurrentUserId] = useState(null);
 
     const url=`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(page-1)*20}`
+
+    useEffect(()=>{
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            setCurrentUserId(uid)
+        }
+        });
+    },[setCurrentUserId])
 
     useEffect(()=>{
         //recuperamos los datos
@@ -36,6 +49,7 @@ export const Pokedex = ({selected,setSelected}) =>{
                     //retornamos los pokemones con la funcion de "...", similar a append en python
                     return {
                         //guardamos en pokemon, como si fuera diccionario
+                        ...pokemon,
                         name:pokemon.name,
                         id:pokemon.id,
                         image: pokemon.sprites.front_default,
@@ -54,37 +68,32 @@ export const Pokedex = ({selected,setSelected}) =>{
     }, [setPokemones,page])
 
 
-    //Se recupera informacion de firebase
-//     useEffect(()=>{
-//         const unsub = onSnapshot(doc(db, "team", "principal"), (snapshot)=>{
-//             if(snapshot.exists()){
-//                 const data=snapshot.data()
-//                 Object.keys(data).map(d=>{
-//                     console.log(data[d])
-//                 })
-//             }
-//         })
-//     },[setTeam])
-
-    // useEffect(()=>{
-    //     team.map((a)=>{
-    //         setDoc(doc(config, "pokemones", a.name), {
-    //             name:a.name,
-    //             sprite:a.image
-
-    //         })
-    //     })
-    //     team.map((a)=>{
-    //         console.log(a.name)
-    //     })
-    //     console.log("-----------")
-        
-    // })
+    useEffect(() => {
+        if(currentUserId!=null){
+            onSnapshot(doc(db, "pokemones", currentUserId), (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.data();
+                setTeam(data.team || []);
+            }
+        });
+        }
+    },[currentUserId]);
 
     function add_team(pokemon){
+        const pokemonParams = {
+            name:pokemon.name,
+            id:pokemon.id,
+            image: pokemon.sprites.front_default,
+            abilities: pokemon.abilities,
+            height:pokemon.height,
+            types:pokemon.types,
+            weight:pokemon.weight
+        };
         // aqui se guarda equipo
         if(team.length<6 && !team.find((a)=>a.name==pokemon.name)){ 
-            setTeam(a=>[...a,pokemon])
+            // setTeam(a=>[...a,pokemon])
+            currentUserId!=null && setDoc(doc(db, "pokemones", currentUserId), { team: [...team, pokemonParams] });
+
         }
         if(team.length<6 && team.find((a)=>a.name==pokemon.name)){ 
             setWarning(true)
@@ -97,14 +106,15 @@ export const Pokedex = ({selected,setSelected}) =>{
         }
     }
     function borrar(pokemon){
-        // aqui se borra equipo
-        setTeam(prev => prev.filter(team => team !== pokemon ))        
+        const pokemonIdToRemove = pokemon.id;
+        // se agrega a la variable la funcion que borra al Pokémon en base a su ID 
+        const updatedTeam = team.filter(pokemon => pokemon.id !== pokemonIdToRemove);
+        //setTeam(updatedTeam);      
+        // Borra el Pokémon del documento en Firestore
+        const docRef = doc(db, "pokemones", currentUserId);
+        const updatedData = { team: updatedTeam };
+        setDoc(docRef, updatedData);
     }
-    
-    useEffect(()=>{
-        setSelected(team)
-    },[team])
-    
     
     return(
         <div style={{backgroundColor:"white"}}>
